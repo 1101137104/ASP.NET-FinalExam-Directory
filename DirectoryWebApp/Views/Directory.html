@@ -17,9 +17,17 @@
         div #grid {
             background:url('../image/background/geometry2.png');
         }
+        
     </style>
+
+    <script>
+        function changeTheme(theme){
+            alert(theme);
+        }
+    </script>
 </head>
 <body>
+    <div id="themeDiv"><button id="themeButton" onclick="changeTheme('ss')">Button</button>33</div>
     <div class="content-pane">
         <div id="grid"></div>
     </div>
@@ -27,6 +35,9 @@
     
     <script>
         $(document).ready(function () {
+
+            $("#themeButton").kendoButton();
+
             var UrlBase = "/";
             $("#grid").kendoGrid({
                 dataSource: {
@@ -79,9 +90,8 @@
                 groupable: true,
                 sortable: true,
                 scrollable: true,
-                sortable: true,
                 filterable: true,
-                editable: "inline",
+                editable: "popup",
                 toolbar: ["create"],
                 pageable: {
                     input: true,
@@ -95,11 +105,18 @@
                     { field: "FriendDirectory_tele", title: "聯絡人電話", width: "160px" },
                     { field: "FriendDirectory_email", title: "聯絡人郵件", width: "130px" },
                     { field: "FriendDirectory_lineId", title: "聯絡人LINE", width: "130px" },
-                    { command: ["edit", "destroy"], title: "Command", width: "250px" }
+                    { command: ["edit", "destroy"], title: "指令", width: "250px" }
                 ]
             });
 
         });
     </script>
+    <style>
+        div #themeDiv {
+            margin-bottom:100px;
+            color:red;
+        }
+    </style>
 </body>
+    
 </html>
