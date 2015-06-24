@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Directory</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.dataviz.material.min.css" />
+
+    <script src="http://cdn.kendostatic.com/2015.1.429/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2015.1.429/js/kendo.all.min.js"></script>
+    <style>
+        body {
+            background:url('../image/background/geometry2.png');
+        }
+        div #grid {
+            background:url('../image/background/geometry2.png');
+        }
+    </style>
+</head>
+<body>
+    <div class="content-pane">
+        <div id="grid"></div>
+    </div>
+
+    
+    <script>
+        $(document).ready(function () {
+            var UrlBase = "/";
+            $("#grid").kendoGrid({
+                dataSource: {
+                    pageSize: 5,
+                    dataType: "jsonp",
+                    transport: {
+                        read: {
+                            url: UrlBase + "api/Directory",
+                            contentType: "application/json; charset=utf-8",
+                            type: "GET"
+                        },
+                        create: {
+                            url: UrlBase + "api/Directory",
+                            contentType: "application/json; charset=utf-8",
+                            type: "POST"
+                        },
+                        update: {
+                            url: UrlBase + "api/Directory",
+                            contentType: "application/json; charset=utf-8",
+                            type: "PUT"
+                        },
+                        destroy: {
+                            url: UrlBase + "api/Directory",
+                            contentType: "application/json; charset=utf-8",
+                            type: "DELETE"
+                        },
+                        parameterMap: function (data, operation) {
+                            if (operation !== "read") {
+                                return kendo.stringify(data);
+                            }
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "FriendDirectory_id",
+                            fields: {
+                                FriendDirectory_id  : { type: "int", editable: false, nullable: false },
+                                FriendDirectory_name: { type: "string", editable: true, nullable: false },
+                                FriendDirectory_gender : { type: "string", editable: true },
+                                FriendDirectory_identity: { type: "string", editable: true, nullable: false },
+                                FriendDirectory_tele: { type: "int", editable: true },
+                                FriendDirectory_email : { type: "string", editable: true },
+                                FriendDirectory_lineId: { type: "string", editable: true, nullable: false }
+                            }
+                        }
+                    }
+
+                },
+                height: 550,
+                groupable: true,
+                sortable: true,
+                scrollable: true,
+                sortable: true,
+                filterable: true,
+                editable: "inline",
+                toolbar: ["create"],
+                pageable: {
+                    input: true,
+                    numeric: false
+                },
+                columns: [
+                    { field: "FriendDirectory_id", title: "聯絡人編號", width: "130px" },
+                    { field: "FriendDirectory_name", title: "聯絡人姓名", width: "130px" },
+                    { field: "FriendDirectory_gender", title: "聯絡人性別", width: "130px" },
+                    { field: "FriendDirectory_identity", title: "聯絡人身分", width: "130px" },
+                    { field: "FriendDirectory_tele", title: "聯絡人電話", width: "160px" },
+                    { field: "FriendDirectory_email", title: "聯絡人郵件", width: "130px" },
+                    { field: "FriendDirectory_lineId", title: "聯絡人LINE", width: "130px" },
+                    { command: ["edit", "destroy"], title: "Command", width: "250px" }
+                ]
+            });
+
+        });
+    </script>
+</body>
+</html>
