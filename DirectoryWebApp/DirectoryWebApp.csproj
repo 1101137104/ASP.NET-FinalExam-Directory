@@ -117,6 +117,10 @@
     <Content Include="Config\DirectoryWebAppDatabase.xml" />
     <Content Include="Config\DirectoryWebAppObjects.xml" />
     <Content Include="Config\DirectoryWebAppPointcut.xml" />
+    <Content Include="Css\kendo.custom.css" />
+    <Content Include="Css\kendo.Flat.css" />
+    <Content Include="Css\kendo.Metro.css" />
+    <Content Include="Css\kendo.Moonlight.css" />
     <Content Include="Global.asax" />
     <Content Include="image\background\geometry2.png" />
     <Content Include="image\background\giftly.png" />
@@ -133,6 +137,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Css\kendo.custom.less" />
+    <Content Include="Css\kendo.Flat.less" />
+    <Content Include="Css\kendo.Moonlight.less" />
+    <Content Include="Css\kendo.Metro.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
