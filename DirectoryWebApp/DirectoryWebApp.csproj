@@ -117,8 +117,10 @@
     <Content Include="Config\DirectoryWebAppDatabase.xml" />
     <Content Include="Config\DirectoryWebAppObjects.xml" />
     <Content Include="Config\DirectoryWebAppPointcut.xml" />
+    <Content Include="Css\kendo.blueopal.css" />
     <Content Include="Css\kendo.custom.css" />
-    <Content Include="Css\kendo.Flat.css" />
+    <Content Include="Css\kendo.material.css" />
+    <Content Include="Css\kendo.materialblack.css" />
     <Content Include="Css\kendo.Metro.css" />
     <Content Include="Css\kendo.Moonlight.css" />
     <Content Include="Global.asax" />
@@ -138,9 +140,11 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Css\kendo.custom.less" />
-    <Content Include="Css\kendo.Flat.less" />
     <Content Include="Css\kendo.Moonlight.less" />
     <Content Include="Css\kendo.Metro.less" />
+    <Content Include="Css\kendo.blueopal.less" />
+    <Content Include="Css\kendo.material.less" />
+    <Content Include="Css\kendo.materialblack.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
