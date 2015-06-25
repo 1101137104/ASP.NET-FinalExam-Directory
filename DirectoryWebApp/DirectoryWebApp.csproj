@@ -124,6 +124,7 @@
     <Content Include="Css\kendo.Metro.css" />
     <Content Include="Css\kendo.Moonlight.css" />
     <Content Include="Global.asax" />
+    <Content Include="image\background\BoyGirl.jpg" />
     <Content Include="image\background\geometry2.png" />
     <Content Include="image\background\giftly.png" />
     <Content Include="Views\Directory.html" />

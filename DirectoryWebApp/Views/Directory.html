@@ -32,7 +32,8 @@
 <body>
     <div id="themeDiv">
         <span id="nowTheme">主題：深藍白</span>
-        <button class="delete-button k-button">自由更換主題</button>
+        <button class="theme-button k-button">自由更換主題</button>
+        <button class="data-button k-button">你多會撈</button>
         
     </div>
     <div class="content-pane">
@@ -40,8 +41,9 @@
     </div>
 
 
-    <script id="delete-confirmation" type="text/x-kendo-template">
-        <p class="delete-message">選擇你喜歡的主題吧!</p>
+    <script id="theme-confirmation" type="text/x-kendo-template">
+
+        <p class="theme-message">選擇你喜歡的主題吧!</p>
 
         <div id="themeDiv">
             <button id="themeButton" class="k-button" onclick="changeTheme('../Css/kendo.custom.css', '美酒紅')">美酒紅</button>
@@ -53,15 +55,101 @@
             <button id="themeButton3" class="k-button" onclick="changeTheme('../Css/kendo.material.css', '深藍白')">深藍白</button>
             <button id="themeButton3" class="k-button" onclick="changeTheme('../Css/kendo.materialblack.css', '石頭灰')">石頭灰</button>
         </div>
+
+        <button class="theme-confirm k-button">返回</button>
+
+    </script>
+
+
+    <script id="data-confirmation" type="text/x-kendo-template">
+
+  
+
+        <div id="example">
+            <div class="demo-section k-content">
+                <div id="chart" style="background: center no-repeat url('../image/background/BoyGirl.jpg');"></div>
+            </div>
+
+            <button class="data-confirm k-button">返回</button>
+            <script>
+                function createChart() {
+                    var gender = countGenderData();
+                    var GBoy = gender[0];
+                    var GGirl = gender[1];
+
+                    $("#chart").kendoChart({
+                        title: {
+                            position: "bottom",
+                            text: "你多會撈"
+                        },
+                        legend: {
+                            visible: false
+                        },
+                        chartArea: {
+                            background: "",
+                            width: 350,
+                            height: 350
+                        },
+                        seriesDefaults: {
+                            labels: {
+                                visible: true,
+                                background: "transparent",
+                                template: "#= category #: \n #= value#%"
+                            }
+                        },
+                        series: [{
+                            type: "pie",
+                            startAngle: 185,
+                            data: [{
+                                category: "Boy",
+                                value: GBoy,
+                                color: "#9de219"
+                            }, {
+                                category: "Girl",
+                                value: GGirl,
+                                color: "#90cc38"
+                            }]
+                        }],
+                        tooltip: {
+                            visible: true,
+                            format: "{0}%"
+                        }
+                    });
+                }
+
+                $(document).ready(createChart);
+                $(document).bind("kendo:skinChange", createChart);
+            </script>
+        </div>
         
-        <button class="delete-confirm k-button">返回</button>
+
 
     </script>
     
     <script>
+        var boy;
+        var girl;
+
+        function countGenderData() {
+            var gridDataArray = $('#grid').data('kendoGrid')._data;
+            var columnDataVector = [];
+            var columnName = 'FriendDirectory_gender';
+            boy = 0;
+            girl = 0;
+            for (var index = 0; index < gridDataArray.length; index++) {
+                if (gridDataArray[index][columnName] == "男") {
+                    boy++;
+                } else {
+                    girl++;
+                }
+            };
+            
+            return [boy, girl];
+
+        }
 
 
-        $(".delete-button").click(function (e) {
+        $(".theme-button").click(function (e) {
             e.preventDefault();
 
             var kendoWindow = $("<div />").kendoWindow({
@@ -73,17 +161,43 @@
             });
 
             kendoWindow.data("kendoWindow")
-                .content($("#delete-confirmation").html())
+                .content($("#theme-confirmation").html())
                 .center().open();
 
             kendoWindow
-                .find(".delete-confirm")
+                .find(".theme-confirm")
                     .click(function () {
                         
 
                         kendoWindow.data("kendoWindow").close();
                     })
                     .end()
+        });
+
+
+        $(".data-button").click(function (e) {
+            e.preventDefault();
+
+            var kendoWindow = $("<div />").kendoWindow({
+                title: "有趣的統計",
+                resizable: false,
+                modal: true,
+                width: 450,
+                height: 450,
+            });
+
+            kendoWindow.data("kendoWindow")
+                .content($("#data-confirmation").html())
+                .center().open();
+
+            kendoWindow
+                .find(".data-confirm")
+                    .click(function () {
+                        kendoWindow.data("kendoWindow").close();
+                    })
+                    .end()
+
+            
         });
 
 
